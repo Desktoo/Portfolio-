@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { EXPERIENCE_DATA } from "../../data/portfolioData";
 
@@ -27,7 +28,7 @@ export default function ExperienceSection() {
           className="font-display text-3xl font-semibold tracking-tight sm:text-4xl"
           style={{ color: "var(--text-primary)" }}
         >
-          Engineering &amp; Architecture
+          Work Experience
         </h2>
       </div>
 
@@ -51,17 +52,35 @@ export default function ExperienceSection() {
               >
                 {item.period}
               </div>
-              <div
-                className="mt-1.5 font-display text-lg font-semibold tracking-tight"
-                style={{ color: "var(--text-primary)" }}
-              >
-                {item.company}
-              </div>
-              <div
-                className="mt-0.5 font-sans text-xs font-normal"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                {item.location}
+              <div className="mt-1.5 flex items-start gap-2.5">
+                {item.logo && (
+                  <div
+                    className="relative mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-md border bg-white p-0.5 shadow-xs"
+                    style={{ borderColor: "var(--border)" }}
+                  >
+                    <Image
+                      src={item.logo}
+                      alt={`${item.company} logo`}
+                      width={28}
+                      height={28}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                )}
+                <div className="min-w-0">
+                  <div
+                    className="font-display text-lg font-semibold tracking-tight"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    {item.company}
+                  </div>
+                  <div
+                    className="mt-0.5 font-sans text-xs font-normal"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {item.location}
+                  </div>
+                </div>
               </div>
             </div>
 

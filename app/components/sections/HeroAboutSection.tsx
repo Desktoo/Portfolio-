@@ -35,60 +35,42 @@ export default function HeroAboutSection() {
           </p>
         </div>
 
-        {/* Personality & Engineering Philosophy Paragraphs */}
-        <div className="space-y-4">
-          <p
-            className="font-sans text-base leading-[1.8] font-normal sm:text-lg"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            {HERO_DATA.bio}
-          </p>
-          <p
-            className="font-sans text-base leading-[1.8] font-normal sm:text-lg"
-            style={{ color: "var(--text-secondary)" }}
-          >
-            {HERO_DATA.secondBio}
-          </p>
-        </div>
-
-        {/* Core Domains: What I Know & What I Do */}
-        <div
-          className="border-t pt-6"
-          style={{ borderColor: "var(--border)" }}
+        {/* Short Human Intro */}
+        <p
+          className="font-sans text-base leading-relaxed sm:text-lg"
+          style={{ color: "var(--text-secondary)" }}
         >
-          <div
-            className="mb-4 font-mono text-xs font-medium uppercase tracking-wider"
-            style={{ color: "var(--accent)" }}
-          >
-            Core Competencies &amp; Engineering Focus
-          </div>
+          {HERO_DATA.intro}
+        </p>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {HERO_DATA.coreCapabilities.map((item) => (
-              <div
-                key={item.category}
-                className="flex flex-col space-y-1.5 border-l-2 pl-3.5 transition-colors"
-                style={{ borderColor: "var(--accent)" }}
-              >
-                <h2
-                  className="font-display text-sm font-semibold tracking-tight"
+        {/* Human-Readable Bullet Points */}
+        <ul className="space-y-3 pt-1">
+          {HERO_DATA.highlights.map((item) => (
+            <li
+              key={item.label}
+              className="flex items-start gap-3 font-sans text-sm sm:text-base leading-relaxed"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              <span
+                className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full"
+                style={{ backgroundColor: "var(--accent)" }}
+                aria-hidden="true"
+              />
+              <span>
+                <strong
+                  className="font-semibold"
                   style={{ color: "var(--text-primary)" }}
                 >
-                  {item.category}
-                </h2>
-                <p
-                  className="font-sans text-xs leading-relaxed"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+                  {item.label}:
+                </strong>{" "}
+                {item.text}
+              </span>
+            </li>
+          ))}
+        </ul>
 
         {/* Clean Google-Style Action Links */}
-        <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-2">
+        <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-3">
           <a
             href="#projects"
             className="group inline-flex items-center gap-2 border-b-2 pb-1 font-display text-base font-medium tracking-tight transition-opacity hover:opacity-75"
@@ -97,7 +79,7 @@ export default function HeroAboutSection() {
               color: "var(--text-primary)",
             }}
           >
-            <span>Explore Architecture &amp; Projects</span>
+            <span>View Projects</span>
             <ArrowDownRight
               className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5"
               style={{ color: "var(--accent)" }}
@@ -117,7 +99,7 @@ export default function HeroAboutSection() {
             className="inline-flex items-center gap-2 border-b-2 border-transparent pb-1 font-display text-base font-medium tracking-tight transition-opacity hover:opacity-75"
             style={{ color: "var(--text-secondary)" }}
           >
-            <span>Say Hello</span>
+            <span>Get in Touch</span>
           </a>
         </div>
       </motion.div>

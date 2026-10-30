@@ -25,7 +25,7 @@ export default function SystemArchitectureHeroSvg() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         role="img"
-        aria-label="Aesthetic architectural sanctuary arch with moving celestial astrolabe, rising sun, tranquil water reflections, and botanical branch"
+        aria-label="Interactive geometric illustration with celestial motion and tranquil reflections"
       >
         <defs>
           <clipPath id="sanctuary-arch-clip">

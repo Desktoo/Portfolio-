@@ -10,7 +10,7 @@ export const PALETTES: Record<PaletteId, PaletteDefinition> = {
   terracotta: {
     id: "terracotta",
     name: "Earthy Terracotta",
-    subtitle: "Warm clay & architectural stone (Default)",
+    subtitle: "Warm clay & architectural stone",
     swatches: ["#E8DCC6", "#B7A89A", "#733F37", "#2B1E1B"],
     light: {
       bg: "#E8DCC6",
@@ -54,7 +54,7 @@ export const PALETTES: Record<PaletteId, PaletteDefinition> = {
   nordic: {
     id: "nordic",
     name: "Nordic Fjord & Cashmere",
-    subtitle: "Alabaster linen, coastal slate & Baltic blue",
+    subtitle: "Alabaster linen, coastal slate & Baltic blue (Default)",
     swatches: ["#F4F6F8", "#DCE3EB", "#2C5270", "#16202B"],
     light: {
       bg: "#F4F6F8",
@@ -123,32 +123,29 @@ export const PALETTE_LIST: PaletteDefinition[] = Object.values(PALETTES);
 
 export const HERO_DATA = {
   name: "Akshat Krishan",
-  tagline: "Full-Stack & Cloud-Native Engineer building resilient backends, distributed systems, and clean digital products.",
-  bio: "Hi, I’m Akshat. I’m a software engineer who builds end-to-end—from multi-database storage architectures and distributed worker queues to crisp, responsive frontends in TypeScript and Next.js. Day to day, I spend most of my time designing modular backend services in NestJS, orchestrating high-concurrency tasks with BullMQ and Redis, and deploying containerized workloads onto Google Kubernetes Engine (GKE) through automated GitOps pipelines with Helm and ArgoCD.",
-  secondBio:
-    "I care deeply about how software performs under pressure and how it feels to the person using it. Under the hood, that means designing schemas around real access patterns—keeping relational entities in PostgreSQL, logging audit trails to DynamoDB, and using distributed mutexes (Redlock) to eliminate write race conditions before they ever happen. On the front, it means building interfaces that load in milliseconds, manage complex state cleanly with Zustand, and make complicated workflows feel natural and lightweight.",
-  coreCapabilities: [
+  tagline: "Full-Stack & Cloud-Native Engineer building resilient backends and thoughtful products.",
+  intro:
+    "I engineer software from the data layer up to the interface—focusing on high-reliability backends and effortless user experiences:",
+  highlights: [
     {
-      category: "Backend & Distributed Systems",
-      description:
-        "NestJS modular monoliths, BullMQ background queues, Redlock distributed locks, Socket.IO real-time sync with Redis Pub/Sub, REST APIs.",
+      label: "Backend & Distributed Systems",
+      text: "Architecting modular services in NestJS, background job queues with BullMQ, and Redlock distributed mutexes to eliminate race conditions.",
     },
     {
-      category: "Databases & Storage Strategy",
-      description:
-        "PostgreSQL schema normalization & indexing (Supabase/Prisma), AWS DynamoDB (Single-Table Design), MongoDB 30-day TTL indexes, Upstash Redis caching.",
+      label: "Multi-Database Architecture",
+      text: "Structuring schemas by access pattern—PostgreSQL for relational models, DynamoDB for audit trails, and Redis/MongoDB for caching.",
     },
     {
-      category: "Cloud, DevOps & GitOps",
-      description:
-        "Google Kubernetes Engine (GKE, HPA, PVC), Docker containers, Helm charts, ArgoCD zero-downtime deployments, GitHub Actions CI/CD.",
+      label: "Cloud & Automated GitOps",
+      text: "Running containerized workloads on Google Kubernetes Engine (GKE) with Helm charts and ArgoCD zero-downtime releases.",
     },
     {
-      category: "Modern Frontend Architecture",
-      description:
-        "Next.js 16 (App Router, Server Components), React, TypeScript, Tailwind CSS, Zustand isolated state, React Hook Form, Zod schema validation.",
+      label: "Modern Frontend Systems",
+      text: "Building snappy Next.js 16 applications with TypeScript, Tailwind CSS, and isolated state (Zustand, Zod) to eliminate redundant re-renders.",
     },
   ],
+  bio: "Full-Stack & Cloud-Native Engineer specializing in TypeScript, Next.js, NestJS, and scalable backend infrastructure.",
+  secondBio: "Experienced in multi-database architectures, distributed BullMQ task processing, and Kubernetes (GKE) GitOps deployments.",
   terminalStatus: {
     availability: "Open to full-stack, backend & cloud-native engineering roles",
     location: "Kota, India / Remote",
@@ -188,6 +185,7 @@ export const EXPERIENCE_DATA: ExperienceItem[] = [
     role: "Software Engineer Intern",
     period: "July 2025 — Sept 2025",
     location: "Remote",
+    logo: "/images/intern-labs.webp",
     bullets: [
       "Architected a full-stack Turborepo monorepo with Next.js, consolidating shared UI components, shared TypeScript configs, and NextAuth role-based access control (RBAC) across separate Admin and Candidate portals.",
       "Integrated an isolated code execution engine on AWS EC2 using Judge0 and Supabase (PostgreSQL) to evaluate custom programming submissions in real time, sustaining 99.9% system uptime.",
@@ -210,9 +208,9 @@ export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: "ascend",
     title: "Ascend",
-    category: "Habit & Productivity Platform (Full-Stack & Cloud)",
+    category: "Full-Stack Habit Platform & Cloud Infrastructure",
     architectureBreakdown:
-      "Multi-database habit engine partitioning relational data in PostgreSQL, audit trails in DynamoDB, and 30-day TTL logs in MongoDB with 31-byte bitmasks for O(1) heatmap reads. Powered by IANA timezone-bucketed BullMQ + Redlock queues and a modular NestJS + Next.js monolith on GKE with ArgoCD GitOps.",
+      "Full-stack productivity engine partitioning data across databases by access pattern: PostgreSQL for relational entities, DynamoDB for append-only audit trails, and MongoDB with 30-day TTL indexes to prevent table bloat. Features 31-byte bitmasks for O(1) monthly heatmap reads, hourly BullMQ worker jobs bucketed by IANA timezones with Redlock mutexes to eliminate write race conditions, and a modular NestJS monolith deployed on GKE with ArgoCD GitOps.",
     techStack: [
       "Next.js 16",
       "NestJS",
@@ -232,7 +230,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
     title: "WorkEzy",
     category: "Job Board & Candidate Application Platform",
     architectureBreakdown:
-      "End-to-end hiring and candidate workflow platform featuring normalized PostgreSQL schemas on Supabase with composite indexing. Integrates Clerk OTP verification, Razorpay payment webhooks, and a modular multi-step application flow built with React Hook Form, Zod, and Zustand.",
+      "Hiring platform featuring normalized PostgreSQL schemas on Supabase with composite indexes to minimize read query latency. Integrates Clerk OTP authentication, Razorpay webhook processing for payments, and a multi-step candidate application flow using React Hook Form, Zod validation, and Zustand state isolation to eliminate redundant re-renders.",
     techStack: [
       "Next.js 16",
       "TypeScript",
@@ -250,9 +248,9 @@ export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: "code-zen",
     title: "CodeZen",
-    category: "Real-Time Code Execution & Assessment Portal",
+    category: "Real-Time Code Execution Platform",
     architectureBreakdown:
-      "Interactive coding assessment platform with separate Admin and Candidate portals inside a shared Next.js monorepo. Evaluates custom programming submissions in real time through an isolated Judge0 execution engine on AWS EC2 backed by Supabase PostgreSQL and SWR caching.",
+      "Coding assessment portal running inside a Next.js monorepo with distinct candidate and admin interfaces. Evaluates user code submissions in real time using an isolated Judge0 execution sandbox on AWS EC2, backed by Supabase PostgreSQL and SWR client-side caching.",
     techStack: [
       "Next.js",
       "TypeScript",
@@ -273,9 +271,9 @@ export const SIDE_PROJECTS_DATA: SideProjectItem[] = [
   {
     id: "tread-with-style",
     title: "Tread With Style",
-    vibe: "Creative Render & Editorial Showcase",
+    vibe: "Scroll Performance & Motion Study",
     description:
-      "A fashion-forward interactive portfolio and footwear concept focused on fluid scroll physics, bold typography, and choreographed GSAP transitions.",
+      "Interactive Next.js 16 and React 19 interface experiment combining GSAP timeline animations with Lenis smooth scrolling, maintaining consistent 60fps rendering across desktop and mobile viewports.",
     techStack: ["Next.js 16", "React 19", "GSAP", "Lenis Smooth Scroll", "Tailwind CSS"],
     liveUrl: "https://tread-with-style-demo.vercel.app",
     githubUrl: "https://github.com/Desktoo/tread-with-style-demo",
@@ -284,9 +282,9 @@ export const SIDE_PROJECTS_DATA: SideProjectItem[] = [
   {
     id: "veshmn",
     title: "Veshmn",
-    vibe: "Architectural & Spatial Web Experience",
+    vibe: "Interactive Frontend Engineering",
     description:
-      "Modern home-building and architectural brand exploration blending spatial layouts, smooth Lenis scroll momentum, and subtle motion reveals.",
+      "Interactive web application built with Next.js 16 and TypeScript, implementing Lenis smooth scroll inertia, custom GSAP scroll-triggered animations, and responsive component architecture with Tailwind CSS.",
     techStack: ["Next.js 16", "TypeScript", "GSAP", "Lenis", "Tailwind CSS"],
     liveUrl: "https://veshmn-modified.vercel.app",
     githubUrl: "https://github.com/Desktoo/Veshmn_modified",
@@ -295,9 +293,9 @@ export const SIDE_PROJECTS_DATA: SideProjectItem[] = [
   {
     id: "rangoon-cafe",
     title: "Rangoon Cafe",
-    vibe: "Atmospheric Hospitality Concept",
+    vibe: "Responsive Web Application",
     description:
-      "Story-driven cafe and dining web render crafted around warm editorial storytelling, tactile menu layouts, and scroll-bound GSAP animations.",
+      "Mobile-first web application built with Next.js and TypeScript, featuring responsive grid layouts, dynamic menu filtering, and scroll-bound micro-interactions.",
     techStack: ["Next.js 16", "TypeScript", "GSAP", "Tailwind CSS"],
     liveUrl: "https://rangoon-demo.vercel.app",
     githubUrl: "https://github.com/Desktoo/rangoon-demo",
@@ -306,9 +304,9 @@ export const SIDE_PROJECTS_DATA: SideProjectItem[] = [
   {
     id: "apple-clone",
     title: "Apple Product Showcase Study",
-    vibe: "Interactive 3D & Scroll Motion Study",
+    vibe: "Scroll-Linked Animation Study",
     description:
-      "A frontend motion study recreating Apple's signature hardware reveal choreography, scroll-linked frame transitions, and micro-interactions.",
+      "Frontend reverse-engineering study recreating scroll-linked frame sequences and product reveal transitions using React, GSAP ScrollTrigger, and Tailwind CSS.",
     techStack: ["React", "GSAP", "ScrollTrigger", "Tailwind CSS"],
     liveUrl: "https://apple-website-clone-five-azure.vercel.app",
     githubUrl: "https://github.com/Desktoo/Apple_Website_Clone",
@@ -317,9 +315,9 @@ export const SIDE_PROJECTS_DATA: SideProjectItem[] = [
   {
     id: "audio-video-dashboard",
     title: "Audio / Video Studio Dashboard",
-    vibe: "Interface & Media Control Render",
+    vibe: "Media Controls & State Architecture",
     description:
-      "A clean, tactile media control and creator analytics dashboard experiment built to explore dense interface hierarchy in TypeScript.",
+      "Audio and video studio dashboard built with React and TypeScript, handling media playback states, audio waveform timelines, and modular control panels.",
     techStack: ["TypeScript", "React", "Tailwind CSS"],
     liveUrl: "https://audio-video-dashboard.vercel.app",
     githubUrl: "https://github.com/Desktoo/audio_video_dashboard",
@@ -328,9 +326,9 @@ export const SIDE_PROJECTS_DATA: SideProjectItem[] = [
   {
     id: "societyhub-promptify",
     title: "SocietyHub, Promptify & Talks",
-    vibe: "Early Full-Stack & Community Side Projects",
+    vibe: "Full-Stack Experiments",
     description:
-      "Earlier weekend builds and explorations—ranging from a neighborhood community portal (SocietyHub) and AI prompt directory (Promptify) to real-time chat apps (Talks & Yapp).",
+      "Early full-stack applications exploring real-time WebSocket communication in Node.js, AI prompt directory indexing in Next.js, and community portal CRUD operations.",
     techStack: ["JavaScript", "Next.js", "React", "WebSockets", "Node.js"],
     liveUrl: "https://society-hub.vercel.app",
     githubUrl: "https://github.com/Desktoo/SocietyHub",

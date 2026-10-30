@@ -119,7 +119,7 @@ export default function ProjectsSection() {
         ))}
       </div>
 
-      {/* Part 2: Few Renders, Motion Studies & Side Projects (Accordion) */}
+      {/* Part 2: Side Projects & Interactive Experiments (Accordion) */}
       <div className="mt-20 pt-4">
         <div
           className="mb-8 border-b pb-6"
@@ -129,13 +129,13 @@ export default function ProjectsSection() {
             className="mb-2 font-mono text-xs font-medium uppercase tracking-wider"
             style={{ color: "var(--accent)" }}
           >
-            03.B / Creative Archive
+            03.B / Side Projects
           </div>
           <h3
             className="font-display text-2xl font-semibold tracking-tight sm:text-3xl"
             style={{ color: "var(--text-primary)" }}
           >
-            Few Renders &amp; Side Projects
+            Side Projects &amp; Experiments
           </h3>
         </div>
 
@@ -189,7 +189,7 @@ export default function ProjectsSection() {
                           color: "var(--text-primary)",
                         }}
                       >
-                        <span>Live Render</span>
+                        <span>Live Demo</span>
                         <ArrowUpRight
                           className="h-3.5 w-3.5"
                           style={{ color: "var(--accent)" }}

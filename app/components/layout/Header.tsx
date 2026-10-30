@@ -42,6 +42,31 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    const targetId = href.replace("#", "");
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      setTimeout(() => {
+        const headerOffset = 64;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+        window.history.pushState(null, "", href);
+      }, 60);
+    }
+  };
+
   return (
     <header
       className="sticky top-0 z-50 w-full border-b backdrop-blur-md transition-colors duration-250"
@@ -54,6 +79,7 @@ export default function Header() {
         {/* Clean Google-Style Sans Masthead */}
         <a
           href="#about"
+          onClick={(e) => handleNavClick(e, "#about")}
           className="flex items-center gap-2.5 font-display text-lg font-semibold tracking-tight transition-opacity hover:opacity-80 sm:text-xl"
           style={{ color: "var(--text-primary)" }}
         >
@@ -73,6 +99,7 @@ export default function Header() {
             <a
               key={link.href}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="text-sm font-medium tracking-normal transition-colors"
               style={{ color: "var(--text-secondary)" }}
               onMouseEnter={(e) =>
@@ -282,8 +309,8 @@ export default function Header() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="font-display text-base font-medium"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="font-display text-base font-medium py-1 transition-opacity active:opacity-60"
                   style={{ color: "var(--text-primary)" }}
                 >
                   {link.label}

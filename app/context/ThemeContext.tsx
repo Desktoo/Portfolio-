@@ -16,13 +16,13 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Always default to Earthy Terracotta in Light Mode whenever a user opens the portfolio
-  const [paletteId, setPaletteIdState] = useState<PaletteId>("terracotta");
+  // Always default to Nordic Fjord in Light Mode whenever a user opens the portfolio
+  const [paletteId, setPaletteIdState] = useState<PaletteId>("nordic");
   const [mode, setModeState] = useState<ThemeMode>("light");
 
   // Apply CSS variables instantaneously to :root without layout recalculation
   useEffect(() => {
-    const palette = PALETTES[paletteId] ?? PALETTES.terracotta;
+    const palette = PALETTES[paletteId] ?? PALETTES.nordic;
     const colors = palette[mode];
     const root = document.documentElement;
 

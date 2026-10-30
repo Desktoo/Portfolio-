@@ -33,6 +33,7 @@ export interface ExperienceItem {
   location: string;
   bullets: string[];
   skills: string[];
+  logo?: string;
 }
 
 export type DiagramType = "queue" | "analytics" | "mesh" | "edge";

@@ -219,7 +219,7 @@ export default function QuickAccessMenu() {
                       className="truncate font-mono text-[11px]"
                       style={{ color: "var(--text-secondary)" }}
                     >
-                      Updated 2026 · Ready to Print / Save
+                      Updated 2026 · PDF download / view
                     </div>
                   </div>
                 </div>

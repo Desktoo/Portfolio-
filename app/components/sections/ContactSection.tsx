@@ -89,7 +89,7 @@ export default function ContactSection() {
           className="font-display text-3xl font-semibold tracking-tight sm:text-4xl"
           style={{ color: "var(--text-primary)" }}
         >
-          Start a Conversation
+          Get in Touch
         </h2>
       </div>
 
@@ -107,9 +107,7 @@ export default function ContactSection() {
               className="font-sans text-sm leading-[1.8] sm:text-base"
               style={{ color: "var(--text-secondary)" }}
             >
-              Open for senior full-stack roles, distributed systems consulting,
-              and technical collaborations. Copy my email directly or send a
-              message alongside.
+              I&apos;m open to full-stack, backend, and cloud-native software engineering opportunities. Send a message below or copy my email to reach out directly.
             </p>
 
             {/* Unboxed 1-Click Email Copy Action */}
@@ -121,7 +119,7 @@ export default function ContactSection() {
                 className="font-mono text-[11px] font-medium uppercase tracking-wider"
                 style={{ color: "var(--accent)" }}
               >
-                Direct Address (Click to Copy)
+                Email (Click to copy)
               </div>
 
               <button
@@ -182,7 +180,7 @@ export default function ContactSection() {
               className="font-mono text-[11px] font-medium uppercase tracking-wider"
               style={{ color: "var(--text-secondary)" }}
             >
-              Elsewhere &amp; Resume
+              Profiles &amp; Resume
             </div>
 
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-1">
@@ -292,7 +290,7 @@ export default function ContactSection() {
                     message: e.target.value,
                   }))
                 }
-                placeholder="Tell me about your project, system architecture, or engineering role..."
+                placeholder="Hi Akshat, let's talk about..."
                 className="mt-2 w-full resize-none border-b bg-transparent pb-2.5 font-sans text-base leading-relaxed outline-none transition-colors"
                 style={{
                   borderColor: "var(--border)",
