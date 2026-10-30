@@ -123,17 +123,39 @@ export const PALETTE_LIST: PaletteDefinition[] = Object.values(PALETTES);
 
 export const HERO_DATA = {
   name: "Akshat Krishan",
-  tagline: "Builder of expressive web experiences & thoughtful products.",
-  bio: "I like building things that feel alive on the screen and effortless underneath. Some days that means obsessing over scroll physics, typography, and GSAP choreography for interactive web renders; other days it means crafting full-stack products that quietly handle the heavy lifting.",
+  tagline: "Full-Stack & Cloud-Native Engineer building resilient backends, distributed systems, and clean digital products.",
+  bio: "Hi, I’m Akshat. I’m a software engineer who builds end-to-end—from multi-database storage architectures and distributed worker queues to crisp, responsive frontends in TypeScript and Next.js. Day to day, I spend most of my time designing modular backend services in NestJS, orchestrating high-concurrency tasks with BullMQ and Redis, and deploying containerized workloads onto Google Kubernetes Engine (GKE) through automated GitOps pipelines with Helm and ArgoCD.",
   secondBio:
-    "Whether it's an atmospheric cafe concept, an architectural showcase, a habit tracker, or a late-night creative experiment—I enjoy taking an idea from a blank canvas to something people genuinely enjoy using.",
+    "I care deeply about how software performs under pressure and how it feels to the person using it. Under the hood, that means designing schemas around real access patterns—keeping relational entities in PostgreSQL, logging audit trails to DynamoDB, and using distributed mutexes (Redlock) to eliminate write race conditions before they ever happen. On the front, it means building interfaces that load in milliseconds, manage complex state cleanly with Zustand, and make complicated workflows feel natural and lightweight.",
+  coreCapabilities: [
+    {
+      category: "Backend & Distributed Systems",
+      description:
+        "NestJS modular monoliths, BullMQ background queues, Redlock distributed locks, Socket.IO real-time sync with Redis Pub/Sub, REST APIs.",
+    },
+    {
+      category: "Databases & Storage Strategy",
+      description:
+        "PostgreSQL schema normalization & indexing (Supabase/Prisma), AWS DynamoDB (Single-Table Design), MongoDB 30-day TTL indexes, Upstash Redis caching.",
+    },
+    {
+      category: "Cloud, DevOps & GitOps",
+      description:
+        "Google Kubernetes Engine (GKE, HPA, PVC), Docker containers, Helm charts, ArgoCD zero-downtime deployments, GitHub Actions CI/CD.",
+    },
+    {
+      category: "Modern Frontend Architecture",
+      description:
+        "Next.js 16 (App Router, Server Components), React, TypeScript, Tailwind CSS, Zustand isolated state, React Hook Form, Zod schema validation.",
+    },
+  ],
   terminalStatus: {
-    availability: "Open to creative & full-stack collaborations",
+    availability: "Open to full-stack, backend & cloud-native engineering roles",
     location: "Kota, India / Remote",
     whatILikeToBuild:
-      "Interactive web stories, tactile interfaces, motion studies & end-to-end digital products",
+      "Distributed backend systems, multi-database architectures, automated GitOps pipelines & polished Next.js applications",
     beyondCode:
-      "Exploring motion choreography, visual design systems, and turning everyday ideas into live builds",
+      "System architecture design, exploring Kubernetes primitives, and turning complex domain logic into clean software",
   },
 };
 

@@ -124,13 +124,26 @@ export default function Header() {
             <AnimatePresence>
               {dropdownOpen && (
                 <motion.div
+                  key="palette-backdrop"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.15 }}
+                  onClick={() => setDropdownOpen(false)}
+                  aria-hidden="true"
+                  className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] sm:hidden"
+                />
+              )}
+              {dropdownOpen && (
+                <motion.div
+                  key="palette-dropdown"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.15 }}
                   role="listbox"
                   aria-label="Color palettes"
-                  className="absolute right-0 mt-3 w-72 rounded-xl border p-3 shadow-2xl"
+                  className="fixed left-4 right-4 top-18 z-50 origin-top rounded-xl border p-3 shadow-2xl max-h-[85vh] overflow-y-auto sm:absolute sm:top-full sm:left-auto sm:right-0 sm:mt-3 sm:w-72 sm:origin-top-right sm:max-h-none"
                   style={{
                     backgroundColor: "var(--bg)",
                     borderColor: "var(--border)",

@@ -155,17 +155,30 @@ export default function QuickAccessMenu() {
         />
       </motion.button>
 
-      {/* Popover Card */}
+      {/* Popover Card & Mobile Backdrop */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            key="quick-access-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+            className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] sm:hidden"
+          />
+        )}
+        {isOpen && (
+          <motion.div
+            key="quick-access-popover"
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 380, damping: 28 }}
             role="dialog"
             aria-label="Quick Access Links"
-            className="absolute right-0 mt-2.5 w-80 sm:w-88 origin-top-right rounded-2xl border p-4 shadow-2xl backdrop-blur-xl z-50"
+            className="fixed left-3 right-3 top-18 z-50 max-h-[85vh] overflow-y-auto origin-top rounded-2xl border p-4 shadow-2xl backdrop-blur-xl sm:absolute sm:top-full sm:left-auto sm:right-0 sm:mt-2.5 sm:w-88 sm:origin-top-right sm:max-h-none"
             style={{
               backgroundColor: "color-mix(in srgb, var(--bg) 96%, transparent)",
               borderColor: "var(--border)",

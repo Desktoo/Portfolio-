@@ -35,7 +35,7 @@ export default function HeroAboutSection() {
           </p>
         </div>
 
-        {/* Personality & Creative Philosophy Paragraphs (Unboxed) */}
+        {/* Personality & Engineering Philosophy Paragraphs */}
         <div className="space-y-4">
           <p
             className="font-sans text-base leading-[1.8] font-normal sm:text-lg"
@@ -51,8 +51,44 @@ export default function HeroAboutSection() {
           </p>
         </div>
 
+        {/* Core Domains: What I Know & What I Do */}
+        <div
+          className="border-t pt-6"
+          style={{ borderColor: "var(--border)" }}
+        >
+          <div
+            className="mb-4 font-mono text-xs font-medium uppercase tracking-wider"
+            style={{ color: "var(--accent)" }}
+          >
+            Core Competencies &amp; Engineering Focus
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {HERO_DATA.coreCapabilities.map((item) => (
+              <div
+                key={item.category}
+                className="flex flex-col space-y-1.5 border-l-2 pl-3.5 transition-colors"
+                style={{ borderColor: "var(--accent)" }}
+              >
+                <h2
+                  className="font-display text-sm font-semibold tracking-tight"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  {item.category}
+                </h2>
+                <p
+                  className="font-sans text-xs leading-relaxed"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Clean Google-Style Action Links */}
-        <div className="flex flex-wrap items-center gap-8 pt-2">
+        <div className="flex flex-wrap items-center gap-6 sm:gap-8 pt-2">
           <a
             href="#projects"
             className="group inline-flex items-center gap-2 border-b-2 pb-1 font-display text-base font-medium tracking-tight transition-opacity hover:opacity-75"
@@ -61,11 +97,19 @@ export default function HeroAboutSection() {
               color: "var(--text-primary)",
             }}
           >
-            <span>Explore Projects &amp; Renders</span>
+            <span>Explore Architecture &amp; Projects</span>
             <ArrowDownRight
               className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5"
               style={{ color: "var(--accent)" }}
             />
+          </a>
+
+          <a
+            href="#experience"
+            className="inline-flex items-center gap-2 border-b-2 border-transparent pb-1 font-display text-base font-medium tracking-tight transition-opacity hover:opacity-75"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            <span>Experience</span>
           </a>
 
           <a
