@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { PROJECTS_DATA, SIDE_PROJECTS_DATA } from "../../data/portfolioData";
@@ -60,12 +61,36 @@ export default function ProjectsSection() {
 
             {/* Right Side: Clean Google-Style Sans Typography */}
             <div className="sm:col-span-8">
-              <h3
-                className="font-display text-2xl font-semibold tracking-tight sm:text-3xl"
-                style={{ color: "var(--text-primary)" }}
-              >
-                {project.title}
-              </h3>
+              <div className="flex items-center gap-3">
+                {project.logo && (
+                  <div
+                    className="relative flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-white p-1 shadow-xs"
+                    style={{ borderColor: "var(--border)" }}
+                  >
+                    <Image
+                      src={project.logo}
+                      alt={`${project.title} logo`}
+                      width={32}
+                      height={32}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                )}
+                <div>
+                  <h3
+                    className="font-display text-2xl font-semibold tracking-tight sm:text-3xl"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    {project.title}
+                  </h3>
+                  <div
+                    className="font-mono text-xs font-medium"
+                    style={{ color: "var(--accent)" }}
+                  >
+                    {project.category}
+                  </div>
+                </div>
+              </div>
 
               {/* Description */}
               <p
@@ -155,7 +180,7 @@ export default function ProjectsSection() {
                     type="button"
                     onClick={() => toggleAccordion(item.id)}
                     aria-expanded={isOpen}
-                    className="group flex cursor-pointer items-center gap-3 text-left transition-opacity hover:opacity-80"
+                    className="group flex cursor-pointer items-center gap-2.5 text-left transition-opacity hover:opacity-80"
                   >
                     <ChevronDown
                       className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
@@ -163,6 +188,20 @@ export default function ProjectsSection() {
                       }`}
                       style={{ color: "var(--accent)" }}
                     />
+                    {item.logo && (
+                      <div
+                        className="relative flex h-6 w-6 shrink-0 items-center justify-center overflow-hidden rounded-md border bg-white p-0.5 shadow-xs"
+                        style={{ borderColor: "var(--border)" }}
+                      >
+                        <Image
+                          src={item.logo}
+                          alt={`${item.title} logo`}
+                          width={24}
+                          height={24}
+                          className="h-full w-full object-contain"
+                        />
+                      </div>
+                    )}
                     <span
                       className="font-display text-lg font-semibold tracking-tight sm:text-xl"
                       style={{ color: "var(--text-primary)" }}
@@ -223,7 +262,7 @@ export default function ProjectsSection() {
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="pt-3 pl-7">
+                      <div className="pt-3 pl-6.5 sm:pl-12.5">
                         <div
                           className="font-mono text-[11px] font-medium uppercase tracking-wider"
                           style={{ color: "var(--accent)" }}

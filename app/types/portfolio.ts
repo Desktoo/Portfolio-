@@ -48,6 +48,7 @@ export interface ProjectItem {
   githubUrl: string;
   diagramType: DiagramType;
   metricsBadge: string;
+  logo?: string;
 }
 
 export interface SideProjectItem {
@@ -59,4 +60,5 @@ export interface SideProjectItem {
   liveUrl?: string;
   githubUrl: string;
   year: string;
+  logo?: string;
 }
