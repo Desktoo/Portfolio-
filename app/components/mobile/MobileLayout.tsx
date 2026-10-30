@@ -72,6 +72,13 @@ export default function MobileLayout() {
   // Active section tracking for bottom dock & sticky pill bar
   const [activeTab, setActiveTab] = useState<"about" | "projects" | "experience" | "contact">("about");
 
+  // Side Projects Accordion State
+  const [openSideId, setOpenSideId] = useState<string | null>(null);
+
+  const toggleSideAccordion = (id: string) => {
+    setOpenSideId((prev) => (prev === id ? null : id));
+  };
+
   // Theme Sheet & Audio Controls
   const [themeSheetOpen, setThemeSheetOpen] = useState(false);
   const [audioOpen, setAudioOpen] = useState(false);
@@ -659,7 +666,7 @@ export default function MobileLayout() {
           </div>
         </section>
 
-        {/* 6. Side Projects (Compact Tap Feed) */}
+        {/* 6. Side Projects & Experiments (Mobile Accordion Cards with Descriptions) */}
         <section className="space-y-3">
           <div className="flex items-center justify-between border-b pb-2" style={{ borderColor: "var(--border)" }}>
             <div
@@ -674,72 +681,133 @@ export default function MobileLayout() {
           </div>
 
           <div className="space-y-2.5">
-            {SIDE_PROJECTS_DATA.map((side) => (
-              <div
-                key={side.id}
-                className="flex items-center justify-between gap-3 rounded-xl border p-3 shadow-xs"
-                style={{
-                  borderColor: "var(--border)",
-                  backgroundColor: "color-mix(in srgb, var(--surface) 25%, transparent)",
-                }}
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  {side.logo && (
-                    <div
-                      className="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-md border bg-white p-0.5 shadow-xs"
-                      style={{ borderColor: "var(--border)" }}
+            {SIDE_PROJECTS_DATA.map((side) => {
+              const isOpen = openSideId === side.id;
+
+              return (
+                <div
+                  key={side.id}
+                  className="rounded-xl border p-3.5 shadow-xs transition-colors"
+                  style={{
+                    borderColor: isOpen ? "var(--accent)" : "var(--border)",
+                    backgroundColor: isOpen
+                      ? "color-mix(in srgb, var(--surface) 40%, transparent)"
+                      : "color-mix(in srgb, var(--surface) 22%, transparent)",
+                  }}
+                >
+                  {/* Top Bar: Clickable Accordion Trigger + External Links */}
+                  <div className="flex items-center justify-between gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => toggleSideAccordion(side.id)}
+                      aria-expanded={isOpen}
+                      className="flex min-w-0 flex-1 items-center gap-2.5 text-left transition-opacity active:opacity-75 cursor-pointer"
                     >
-                      <Image
-                        src={side.logo}
-                        alt={`${side.title} logo`}
-                        width={28}
-                        height={28}
-                        className="h-full w-full object-contain"
+                      <ChevronDown
+                        className={`h-4 w-4 shrink-0 transition-transform duration-200 ${
+                          isOpen ? "rotate-180" : ""
+                        }`}
+                        style={{ color: "var(--accent)" }}
                       />
-                    </div>
-                  )}
-                  <div className="min-w-0">
-                    <div className="truncate font-display text-sm font-semibold tracking-tight">
-                      {side.title}
-                    </div>
-                    <div
-                      className="truncate font-mono text-[10px]"
-                      style={{ color: "var(--text-secondary)" }}
-                    >
-                      {side.vibe} ({side.year})
+
+                      {side.logo && (
+                        <div
+                          className="relative flex h-7 w-7 shrink-0 items-center justify-center overflow-hidden rounded-md border bg-white p-0.5 shadow-xs"
+                          style={{ borderColor: "var(--border)" }}
+                        >
+                          <Image
+                            src={side.logo}
+                            alt={`${side.title} logo`}
+                            width={28}
+                            height={28}
+                            className="h-full w-full object-contain"
+                          />
+                        </div>
+                      )}
+
+                      <div className="min-w-0">
+                        <div className="truncate font-display text-sm font-semibold tracking-tight">
+                          {side.title}
+                        </div>
+                        <div
+                          className="truncate font-mono text-[10px]"
+                          style={{ color: "var(--text-secondary)" }}
+                        >
+                          {side.vibe} ({side.year})
+                        </div>
+                      </div>
+                    </button>
+
+                    {/* External Action Links */}
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {side.liveUrl && (
+                        <a
+                          href={side.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-md border px-2 py-1 font-mono text-[11px] font-medium"
+                          style={{
+                            borderColor: "var(--accent)",
+                            color: "var(--accent)",
+                            backgroundColor: "color-mix(in srgb, var(--accent) 10%, transparent)",
+                          }}
+                        >
+                          Live
+                        </a>
+                      )}
+                      <a
+                        href={side.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-7 w-7 items-center justify-center rounded-md border transition-transform active:scale-95"
+                        style={{ borderColor: "var(--border)", color: "var(--text-secondary)" }}
+                        aria-label={`Open ${side.title} repository`}
+                      >
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </a>
                     </div>
                   </div>
-                </div>
 
-                <div className="flex items-center gap-1.5 shrink-0">
-                  {side.liveUrl && (
-                    <a
-                      href={side.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-md border px-2 py-1 font-mono text-[11px] font-medium"
-                      style={{
-                        borderColor: "var(--accent)",
-                        color: "var(--accent)",
-                        backgroundColor: "color-mix(in srgb, var(--accent) 10%, transparent)",
-                      }}
-                    >
-                      Live
-                    </a>
-                  )}
-                  <a
-                    href={side.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-7 w-7 items-center justify-center rounded-md border"
-                    style={{ borderColor: "var(--border)", color: "var(--text-secondary)" }}
-                    aria-label={`Open ${side.title} repository`}
-                  >
-                    <ArrowUpRight className="h-3.5 w-3.5" />
-                  </a>
+                  {/* Accordion Expandable Content: Description & Tech Stack */}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.22, ease: "easeInOut" }}
+                        className="overflow-hidden"
+                      >
+                        <div className="mt-3 border-t pt-2.5 space-y-2" style={{ borderColor: "var(--border)" }}>
+                          <p
+                            className="font-sans text-xs leading-relaxed"
+                            style={{ color: "var(--text-secondary)" }}
+                          >
+                            {side.description}
+                          </p>
+
+                          <div className="flex flex-wrap gap-1 font-mono text-[10px]">
+                            {side.techStack.map((tech) => (
+                              <span
+                                key={tech}
+                                className="rounded border px-1.5 py-0.5"
+                                style={{
+                                  borderColor: "var(--border)",
+                                  backgroundColor: "color-mix(in srgb, var(--surface) 30%, transparent)",
+                                  color: "var(--text-primary)",
+                                }}
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
