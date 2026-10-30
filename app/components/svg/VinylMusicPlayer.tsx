@@ -130,21 +130,21 @@ export default function VinylMusicPlayer() {
       }).catch(() => {});
     }
 
-    // Start 2.5-second sequence:
+    // Start 1.5-second sequence:
     // 0.0s: Vinyl appears from bottom right
     setDismissed(false);
     setPhase("cueing");
     setCueStep(1);
 
-    // 0.9s: Tonearm swings smoothly from cradle to vinyl lead-in groove
+    // 0.4s: Tonearm swings smoothly from cradle to vinyl lead-in groove
     cueTimer1.current = setTimeout(() => {
       setCueStep(2);
 
-      // 1.8s: Needle pin drops & settles onto the vinyl groove
+      // 0.9s: Needle pin drops & settles onto the vinyl groove
       cueTimer2.current = setTimeout(() => {
         setCueStep(3);
 
-        // 2.5s: Exactly at 2.5s, pin is settled, vinyl revolves on its center axis, audio plays!
+        // 1.5s: Exactly at 1.5s, pin is settled, vinyl revolves, audio plays!
         cueTimer3.current = setTimeout(() => {
           setCueStep(4);
           setPhase("playing");
@@ -155,9 +155,9 @@ export default function VinylMusicPlayer() {
               setPhase("idle");
             });
           }
-        }, 700); // 1.8s + 0.7s = 2.5s total
-      }, 900); // 0.9s + 0.9s = 1.8s
-    }, 900); // 0.9s
+        }, 600); // 0.9s + 0.6s = 1.5s total
+      }, 500); // 0.4s + 0.5s = 0.9s
+    }, 400); // 0.4s
   };
 
   const handlePrev = () => {
@@ -208,7 +208,7 @@ export default function VinylMusicPlayer() {
               {phase === "cueing" ? (
                 <span style={{ color: "var(--accent)" }} className="animate-pulse">
                   ✦ {cueStep === 1
-                    ? "Vinyl emerging (2.5s cue)..."
+                    ? "Vinyl emerging (1.5s cue)..."
                     : cueStep === 2
                     ? "Tonearm swinging in..."
                     : "Needle pin settling on groove..."}
@@ -244,7 +244,7 @@ export default function VinylMusicPlayer() {
                   ? "Pause music"
                   : phase === "cueing"
                   ? "Cancel cueing"
-                  : "Play music (Vinyl emerges from bottom right in 2.5s)"
+                  : "Play music (Vinyl emerges from bottom right in 1.5s)"
               }
               className="relative flex cursor-pointer items-center justify-center rounded-full p-2.5 transition-transform hover:scale-106 active:scale-95 shadow-sm"
               style={{
@@ -256,7 +256,7 @@ export default function VinylMusicPlayer() {
                   ? "Pause"
                   : phase === "cueing"
                   ? "Cueing..."
-                  : "Play"
+                  : "Play (1.5s cue)"
               }
             >
               {phase === "playing" ? (
@@ -297,21 +297,33 @@ export default function VinylMusicPlayer() {
         </div>
       </div>
 
-      {/* 2. THE BIG VINYL RECORD APPEARING FROM THE BOTTOM RIGHT CORNER */}
+      {/* 2. THE FLOATING VINYL RECORD APPEARING FROM THE BOTTOM RIGHT CORNER */}
       <AnimatePresence>
         {phase !== "idle" && !dismissed && (
           <motion.div
-            initial={{ x: 140, y: 140, opacity: 0, scale: 0.75 }}
+            initial={{ x: 100, y: 100, opacity: 0, scale: 0.8 }}
             animate={{ x: 0, y: 0, opacity: 1, scale: 1 }}
-            exit={{ x: 140, y: 140, opacity: 0, scale: 0.75 }}
-            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed right-3 bottom-3 z-50 pointer-events-auto sm:right-6 sm:bottom-6"
+            exit={{ x: 100, y: 100, opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed right-3 bottom-3 z-50 pointer-events-auto sm:right-5 sm:bottom-5"
           >
             {/* Transparent Floating Record Stage with Soft Drop Shadow */}
-            <div className="relative drop-shadow-[0_20px_45px_rgba(0,0,0,0.65)] select-none">
+            <div className="group relative drop-shadow-[0_12px_28px_rgba(0,0,0,0.55)] select-none">
+              {/* Optional dismiss button on hover */}
+              <button
+                type="button"
+                onClick={() => setDismissed(true)}
+                aria-label="Hide floating vinyl record"
+                className="absolute -top-1.5 -right-1.5 z-10 flex h-5 w-5 items-center justify-center rounded-full border bg-black/80 text-white/70 opacity-0 transition-opacity hover:opacity-100 hover:text-white group-hover:opacity-100 shadow-md cursor-pointer"
+                style={{ borderColor: "var(--border)" }}
+                title="Hide vinyl record view"
+              >
+                <X className="h-3 w-3" />
+              </button>
+
               <svg
                 viewBox="0 0 280 280"
-                className="h-56 w-56 sm:h-64 sm:w-64 overflow-visible will-change-transform"
+                className="h-36 w-36 sm:h-40 sm:w-40 overflow-visible will-change-transform"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -415,47 +427,51 @@ export default function VinylMusicPlayer() {
                 </g>
 
                 {/* TONEARM ASSEMBLY & PIVOT BASE */}
-                {/* Heavy Pivot Gimbal at (245, 60) */}
+                {/* Resting Cradle */}
+                <path
+                  d="M228 80 L236 80 M232 76 L232 84"
+                  stroke="var(--border)"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                />
+
+                {/* Heavy Pivot Gimbal at (240, 58) */}
                 <circle
-                  cx="245"
-                  cy="60"
+                  cx="240"
+                  cy="58"
                   r="13"
                   fill="#1c1c20"
                   stroke="var(--accent)"
                   strokeWidth="1.2"
                 />
-                <circle cx="245" cy="60" r="4" fill="var(--accent)" />
+                <circle cx="240" cy="58" r="4" fill="var(--accent)" />
 
-                
-
-                {/* TONEARM + STYLUS PIN: Perfectly aligned to outer groove at (179, 126) */}
+                {/* TONEARM + STYLUS PIN: Perfectly aligned and in sync with 1.5s sequence */}
                 <motion.g
-                  initial={{ rotate: -24 }}
+                  initial={{ rotate: -22 }}
                   animate={{
-                    // Step 1 (0-0.9s): Parked on cradle (-24deg)
-                    // Step 2 (0.9-1.8s): Swings over vinyl groove (0deg)
-                    // Step 3 (1.8-2.5s+): Settles onto the groove (0deg with needle dip)
-                    rotate: cueStep === 1 ? -24 : 0,
-                    y: cueStep >= 3 ? 3.5 : 0,
+                    // Step 1 (0-0.4s): Parked on cradle (-22deg)
+                    // Step 2 (0.4-0.9s): Swings over vinyl lead-in groove (0deg)
+                    // Step 3 (0.9-1.5s): Settles onto groove with needle dip (y: 2.5)
+                    rotate: cueStep === 1 ? -22 : 0,
+                    y: cueStep >= 3 ? 2.5 : 0,
                   }}
                   transition={{
-                    duration: cueStep === 2 ? 0.9 : 0.45,
+                    duration: cueStep === 2 ? 0.5 : 0.35,
                     ease: [0.25, 1, 0.5, 1],
                   }}
-                  style={{ originX: "245px", originY: "60px" }}
+                  style={{ originX: "240px", originY: "58px" }}
                 >
-                  
-
-                  {/* Polished Metallic S-Curved Tonearm Tube extending from (245, 60) to (195, 110) */}
+                  {/* Polished Metallic S-Curved Tonearm Tube extending from (240, 58) to (192, 110) */}
                   <path
-                    d="M245 60 C240 85, 230 102, 195 110"
+                    d="M240 58 C236 82, 222 102, 192 110"
                     stroke="var(--accent)"
                     strokeWidth="1.8"
                     strokeLinecap="round"
                     fill="none"
                   />
                   <path
-                    d="M245 60 C240 85, 230 102, 195 110"
+                    d="M240 58 C236 82, 222 102, 192 110"
                     stroke="#ffffff"
                     strokeWidth="0.8"
                     strokeLinecap="round"
@@ -463,20 +479,39 @@ export default function VinylMusicPlayer() {
                     fill="none"
                   />
 
-                  {/* Angled Headshell Cartridge: Aligned along the groove at (180, 108) */}
+                  {/* Angled Headshell Cartridge: Aligned along the groove at (178, 108) */}
                   <rect
-                    x="183"
+                    x="180"
                     y="90"
-                    width="16"
-                    height="9"
+                    width="15"
+                    height="8"
                     rx="2"
-                    transform="rotate(62 180 108)"
+                    transform="rotate(62 178 108)"
                     fill="#18181c"
                     stroke="var(--accent)"
                     strokeWidth="1.2"
                   />
 
-                  
+                  {/* Stylus Cantilever Pin & Diamond Tip (Lands directly on groove at radius ~58) */}
+                  <line
+                    x1="178"
+                    y1="112"
+                    x2="173"
+                    y2="124"
+                    stroke="var(--accent)"
+                    strokeWidth="1.3"
+                    strokeLinecap="round"
+                  />
+                  <circle cx="173" cy="124" r="1.5" fill="#ffffff" />
+                  <circle
+                    cx="173"
+                    cy="124"
+                    r="2.8"
+                    stroke="var(--accent)"
+                    strokeWidth="0.6"
+                    strokeOpacity="0.7"
+                    fill="none"
+                  />
                 </motion.g>
               </svg>
             </div>
