@@ -18,10 +18,10 @@ export default function SystemArchitectureHeroSvg() {
   const scrollBranch = useTransform(smoothScroll, [0, 1], [0, 4]);
 
   return (
-    <div className="relative flex w-full items-center justify-center py-2 select-none">
+    <div className="relative flex w-full items-center justify-center py-0 select-none">
       <svg
         viewBox="20 20 380 410"
-        className="h-auto w-full max-w-[480px] sm:max-w-[540px] lg:max-w-[580px] overflow-visible will-change-transform"
+        className="h-auto w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[390px] overflow-visible will-change-transform"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         role="img"

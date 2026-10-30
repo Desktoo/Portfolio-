@@ -2,9 +2,18 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
+import {
+  ArrowUpRight,
+  Check,
+  ChevronDown,
+  Menu,
+  Moon,
+  Sun,
+  X,
+} from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
-import { PALETTE_LIST } from "../../data/portfolioData";
+import { CONTACT_DATA, PALETTE_LIST } from "../../data/portfolioData";
+import QuickAccessMenu from "./QuickAccessMenu";
 
 const NAV_LINKS = [
   { label: "About", href: "#about" },
@@ -78,8 +87,10 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Right Controls: 5-Palette Switcher & Light/Dark Toggle */}
-        <div className="flex items-center gap-4">
+        {/* Right Controls: Animated Quick Access, 5-Palette Switcher & Light/Dark Toggle */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          <QuickAccessMenu />
+
           <div className="relative" ref={dropdownRef}>
             <button
               type="button"
@@ -265,6 +276,90 @@ export default function Header() {
                   {link.label}
                 </a>
               ))}
+
+              {/* Quick Access Mobile Shortcut Box */}
+              <div
+                className="mt-3 border-t pt-3"
+                style={{ borderColor: "var(--border)" }}
+              >
+                <div
+                  className="mb-2 font-mono text-[10px] font-semibold uppercase tracking-wider"
+                  style={{ color: "var(--accent)" }}
+                >
+                  Quick Access Links
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href={CONTACT_DATA.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-lg border p-2 text-xs font-semibold"
+                    style={{
+                      borderColor: "var(--accent)",
+                      backgroundColor:
+                        "color-mix(in srgb, var(--accent) 12%, var(--surface))",
+                      color: "var(--text-primary)",
+                    }}
+                  >
+                    <span>Resume (PDF)</span>
+                    <ArrowUpRight
+                      className="h-3 w-3"
+                      style={{ color: "var(--accent)" }}
+                    />
+                  </a>
+                  <a
+                    href={CONTACT_DATA.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-lg border p-2 text-xs font-semibold"
+                    style={{
+                      borderColor: "var(--border)",
+                      backgroundColor: "var(--surface)",
+                      color: "var(--text-primary)",
+                    }}
+                  >
+                    <span>GitHub</span>
+                    <ArrowUpRight
+                      className="h-3 w-3"
+                      style={{ color: "var(--accent)" }}
+                    />
+                  </a>
+                  <a
+                    href={CONTACT_DATA.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-lg border p-2 text-xs font-semibold"
+                    style={{
+                      borderColor: "var(--border)",
+                      backgroundColor: "var(--surface)",
+                      color: "var(--text-primary)",
+                    }}
+                  >
+                    <span>LinkedIn</span>
+                    <ArrowUpRight
+                      className="h-3 w-3"
+                      style={{ color: "var(--accent)" }}
+                    />
+                  </a>
+                  <a
+                    href={CONTACT_DATA.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-lg border p-2 text-xs font-semibold"
+                    style={{
+                      borderColor: "var(--border)",
+                      backgroundColor: "var(--surface)",
+                      color: "var(--text-primary)",
+                    }}
+                  >
+                    <span>Twitter / X</span>
+                    <ArrowUpRight
+                      className="h-3 w-3"
+                      style={{ color: "var(--accent)" }}
+                    />
+                  </a>
+                </div>
+              </div>
             </div>
           </motion.nav>
         )}

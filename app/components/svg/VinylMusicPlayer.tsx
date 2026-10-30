@@ -189,7 +189,7 @@ export default function VinylMusicPlayer() {
 
       {/* 1. CONTROLS POSITIONED DIRECTLY UNDER THE SVG */}
       <div
-        className="mt-4 flex w-full max-w-[460px] flex-col gap-2.5 border-t pt-3 select-none"
+        className="mx-auto mt-4 flex w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[390px] flex-col gap-2.5 border-t pt-3 select-none"
         style={{ borderColor: "var(--border)" }}
       >
         <div className="flex items-center justify-between gap-3">
